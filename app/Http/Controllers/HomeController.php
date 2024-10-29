@@ -16,7 +16,7 @@ class HomeController extends Controller
 
         // passing data to view file
         return view('home/index', [
-            "message" => "Welcome to my blog"
+            "message" => "Welcome to website"
         ]);
     }
 

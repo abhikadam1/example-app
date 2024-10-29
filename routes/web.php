@@ -19,6 +19,11 @@ $arr = " ";
 Route::get('/view', [HomeController::class, 'index'])->middleware('age:19');;
 Route::get('/index', [HomeController::class, 'index'])->middleware(["auth.check:25"]);
 Route::get('/login', [HomeController::class, 'login']);
+Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
+ 
+Route::any('/FAKE', function () {
+    return "<u><h1><b>FAKE</b><br></h1></u>";
+});
 // Route::get('/age', [HomeController::class, 'index']);
 // Route::get('/age', [HomeController::class, 'index'])->middleware('AgeMiddleware');
 // Route::get('/', [HomeController::class, 'index'])->middleware('auth.check');
