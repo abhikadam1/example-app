@@ -16,7 +16,7 @@ class AgeMiddleware
      */
     public function handle(Request $request, Closure $next, $age)
     {
-        echo "Testing  middleware";
+        // echo "Testing  middleware";
         // $age = $request->input('age');
         if ($age < 18) {
             return response()->json(

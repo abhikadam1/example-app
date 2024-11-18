@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -28,10 +29,7 @@ Route::any('/FAKE', function () {
 // Route::get('/age', [HomeController::class, 'index'])->middleware('AgeMiddleware');
 // Route::get('/', [HomeController::class, 'index'])->middleware('auth.check');
 
-Route::get('/age',[
-    'middleware' => 'age:4',
-    'uses' => 'HomeController@index',
- ]);
+Route::get('/age',[HomeController::class, 'index'])->middleware('age:10');
 
 Route::get('/', function () {
     return view('welcome');
