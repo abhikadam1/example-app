@@ -17,8 +17,8 @@ use App\Http\Controllers\HomeController;
 */
 // $arr =  array(1,2,5,5);
 $arr = " ";
-Route::get('/view', [HomeController::class, 'index'])->middleware('age:19');;
-Route::get('/index', [HomeController::class, 'index'])->middleware(["auth.check:25"]);
+Route::get('/view/{age1}', [HomeController::class, 'index'])->middleware('age:age1');
+Route::get('/age/{age1}', [HomeController::class, 'index'])->middleware(["auth.check:age1"]);
 Route::get('/login', [HomeController::class, 'login']);
 Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
  
@@ -29,7 +29,12 @@ Route::any('/FAKE', function () {
 // Route::get('/age', [HomeController::class, 'index'])->middleware('AgeMiddleware');
 // Route::get('/', [HomeController::class, 'index'])->middleware('auth.check');
 
-Route::get('/age',[HomeController::class, 'index'])->middleware('age:10');
+// Route::get('/age/{age1}',[HomeController::class, 'index'])->middleware('age:age1');
+
+// Route::get('/age/{age1}', function ($age1) {
+//     // return $age1;
+//     return view('welcome');
+// });
 
 Route::get('/', function () {
     return view('welcome');
