@@ -29,8 +29,10 @@ class CheckAuthenticated
     //     return $next($request);
     // }
 
-    public function handle(Request $request, Closure $next, $age = 10, $arr = null)
+    public function handle(Request $request, Closure $next)
     {   
+        $age = $request->route('age1');
+
         // dd($arr);
         if ($age < 18) {
             echo "<pre> You are not allowed $age";

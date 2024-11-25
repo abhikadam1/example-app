@@ -14,10 +14,10 @@ class AgeMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $age)
+    public function handle(Request $request, Closure $next)
     {
         // echo "Testing  middleware";
-        // $age = $request->input('age');
+        $age = $request->route('age1');
         if ($age < 18) {
             return response()->json(
                 ['message' => 'You are not allowed to access this page'],
