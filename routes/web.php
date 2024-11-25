@@ -25,6 +25,9 @@ Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
 Route::any('/FAKE', function () {
     return "<u><h1><b>FAKE</b><br></h1></u>";
 });
+
+Route::get('formView', [HomeController::class, 'formView'])->middleware('auth.check:24');
+Route::post('saveForm', [HomeController::class, 'saveForm']);
 // Route::get('/age', [HomeController::class, 'index']);
 // Route::get('/age', [HomeController::class, 'index'])->middleware('AgeMiddleware');
 // Route::get('/', [HomeController::class, 'index'])->middleware('auth.check');

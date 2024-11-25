@@ -29,21 +29,21 @@ class CheckAuthenticated
     //     return $next($request);
     // }
 
-    public function handle(Request $request, Closure $next)
-    {   
-        $age = $request->route('age1');
-
-        // dd($arr);
+    public function handle(Request $request, Closure $next, $age = null)
+    {
+        if ($age === null) {
+            $age = $request->route('age1');
+        }
+        // print(csrf_token());
+        // exit;
         if ($age < 18) {
             echo "<pre> You are not allowed $age";
             exit;
-        }else{
-            echo "Yes you are allowed $age";
-            exit;            
         }
+
         // if (!Auth::check()) {
         //     return redirect('login');
         // }
-        // return $next($request);
+        return $next($request);
     }
 }
