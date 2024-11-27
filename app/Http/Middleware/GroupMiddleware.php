@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AgeMiddleware
+class GroupMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,17 +16,12 @@ class AgeMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // echo "Testing  middleware";
-        // $age = $request->route('age1');
-        $age = $request->age1;
-        if ($age < 18) {
-            return response()->json(
-                ['message' => 'You are not allowed to access this page'],
-                403
-            );
+        if (1 != 1) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }else{
+            echo "Group Middleware Called ";
+            // return response()->json(['msg'=> "Group middleware called"] );
         }
-        // return $next($request);
-
         return $next($request);
     }
 }
