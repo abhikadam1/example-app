@@ -33,12 +33,14 @@ class CheckAuthenticated
     {
         if ($age === null) {
             $age = $request->route('age1');
+            $age= $request->age1;
+            echo " $age <br> ";
         }
         // print(csrf_token());
         // exit;
         if ($age < 18) {
-            echo "<pre> You are not allowed $age";
-            exit;
+            echo " You are not allowed $age<br>";
+            // exit;
         }
 
         // if (!Auth::check()) {
