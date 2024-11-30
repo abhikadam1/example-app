@@ -10,19 +10,33 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // you can call some model here
-        // store data in a variable and
-        // pass this data to your view file
-
-        // passing data to view file
-        return view('home/index', [
-            "message" => "Welcome to website"
-        ]);
+        $data = array(
+            'title' => 'Welcome to my website',
+            'message' => 'This is my first Laravel project',
+            'name' => 'John Doe'
+        );
+        return view('home/index', ["data" => $data]);
     }
 
     public function login()
     {
         return view('home/login');
     }
-    
+
+    function formView()
+    {
+        return view('home/formView');
+    }
+
+    function saveForm(Request $request)
+    {
+        $request->validate([
+                'userEmail' => 'required|email',
+                'userPass' => 'required|min:5'
+            ]
+        );
+        echo "<pre>";
+        print_r($request->input());
+    }
+
 }
