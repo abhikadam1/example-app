@@ -3,6 +3,7 @@
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -20,6 +21,17 @@ $arr = " ";
 Route::get('/age/{age1}', [HomeController::class, 'index'])->middleware(["auth.check:age1"]);
 Route::get('/login', [HomeController::class, 'login']);
 Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
+ 
+Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
+Route::redirect('/here', '/view'); 
+Route::redirect('/here1', '/view', 301);
+Route::permanentRedirect('/here2', '/view'); 
+
+Route::get('/token', function (Request $request) {
+    $token = $request->session()->token();
+    // $token = csrf_token();
+    return response()->json(['csrf_token' => $token]);    
+});
 
 Route::get('formView/', [HomeController::class, 'formView']);
 
