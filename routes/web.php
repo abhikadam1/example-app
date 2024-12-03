@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileUpload;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -20,6 +21,7 @@ use Illuminate\Http\Request;
 $arr = " ";
 Route::get('/age/{age1}', [HomeController::class, 'index'])->middleware(["auth.check:age1"]);
 Route::get('/login', [HomeController::class, 'login']);
+Route::get('/getDBData', [HomeController::class, 'getDBData']);
 Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
  
 Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
@@ -33,7 +35,7 @@ Route::get('/token', function (Request $request) {
     return response()->json(['csrf_token' => $token]);    
 });
 
-Route::get('formView/', [HomeController::class, 'formView']);
+Route::get('/formView', [HomeController::class, 'formView']);
 
 Route::any('/FAKE', function () {
     return "<u><h1><b>FAKE</b><br></h1></u>";
@@ -57,13 +59,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::group(['middleware' => ['protectedGroup', 'guest', 'age']], function () {
     Route::get('formView1/', [HomeController::class, 'formView']);
     Route::get('/view/{age1}', [HomeController::class, 'index']);
-    Route::get('/', function () {
-        // return view('welcome');
-
-    });
 });
 
+Route::get('/fileUpload', function(){
+    return view('fileUpload');
+});
+
+Route::post('/handleFile',[FileUpload::class, 'index']);
 require __DIR__ . '/auth.php';
