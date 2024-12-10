@@ -25,6 +25,11 @@
         <form method="post" action="saveForm">
             @csrf
             <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" id="name" >
+                <span style="color: red;">@error('name'){{$message}}@enderror</span>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">

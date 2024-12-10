@@ -35,6 +35,7 @@ class HomeController extends Controller
     function saveForm(Request $request)
     {
         $request->validate([
+                'name' => 'required|min:3',
                 'userEmail' => 'required|email',
                 'userPass' => 'required|min:5'
             ]
@@ -43,7 +44,8 @@ class HomeController extends Controller
         // print_r($request->input());
 
         $user = new UserNew;
-        $user->name = 'Abhi';
+        // $user->name = 'Abhi';
+        $user->name = $request->input('name');
         $user->email = $request->input('userEmail');
         $user->password = Hash::make($request->input('userPass'));
         $user->save();
