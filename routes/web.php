@@ -22,6 +22,8 @@ $arr = " ";
 Route::get('/age/{age1}', [HomeController::class, 'index'])->middleware(["auth.check:age1"]);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/getDBData', [HomeController::class, 'getDBData']);
+Route::get('/getUserData', [HomeController::class, 'getUserData']);
+Route::get('/deleteUserData/{id}', [HomeController::class, 'deleteUserData']);
 Route::match(['get', 'post'], '/data', [HomeController::class, 'login']);
  
 Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
