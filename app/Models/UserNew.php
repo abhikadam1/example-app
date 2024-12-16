@@ -22,6 +22,11 @@ class UserNew extends Model
     //     'role
     //     ',
     //     ];
-        
+    public function getNameAttribute($value)
+    {
+        // return lcfirst($vadvvsdvSalue);
+        return lcfirst($value);
+    }
+
 
 }
